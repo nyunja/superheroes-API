@@ -30,14 +30,15 @@ const renderTable = (data) => {
 
     slicedData.forEach(hero => {
         let row = `<tr>
-            <td><img src="${hero.images.xs}" alt="${hero.name}/">
-            </td><td> ${hero.name}</td>
+            <td><img src="${hero.images.xs}" alt="${hero.name}/"></td>
+            <td> ${hero.name}</td>
             <td>${hero.biography.fullName || 'N/A'}</td>
-            <td>
-                Intelligence: ${hero.powerstats.intelligence || 'N/A'}, 
-                Strength: ${hero.powerstats.strength || 'N/A'}, 
-                Speed: ${hero.powerstats.speed || 'N/A'}
-            </td>
+            <td>${hero.powerstats.intelligence || 'N/A'}</td>
+            <td>${hero.powerstats.strength || 'N/A'}</td>
+            <td>${hero.powerstats.speed || 'N/A'}</td>
+            <td>${hero.powerstats.durability || 'N/A'}</td>
+            <td>${hero.powerstats.power || 'N/A'}</td>
+            <td>${hero.powerstats.combat || 'N/A'}</td>
             <td>${hero.appearance.race || 'N/A'}</td>
             <td>${hero.appearance.gender || 'N/A'}</td>
             <td>${hero.appearance.height[1] || 'N/A'}</td>
