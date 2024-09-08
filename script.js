@@ -8,8 +8,8 @@ let currentSortColumn = '';
 // Load the data and initialize the table
 const loadData = (data) => {
     heroes = data;
-    currentData = [...heroes]; // Initialize currentData with all the heroes
-    sortTable('name'); // Sort by name initially
+    currentData = [...heroes];  // Initialize currentData with all the heroes
+    sortTable('name');  // Sort by name initially
 };
 
 // Fetch data from the API
@@ -22,7 +22,7 @@ const fetchData = () => {
 // Function to render the table
 const renderTable = (data) => {
     const tbody = document.getElementById('tableBody');
-    tbody.innerHTML = ''; // Clear current table data
+    tbody.innerHTML = '';  // Clear current table data
     let slicedData = data.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
     if (rowsPerPage === 'all') {
@@ -31,7 +31,8 @@ const renderTable = (data) => {
 
     slicedData.forEach(hero => {
         let row = `<tr>
-            <td><img src="${hero.images.xs}" alt="${hero.name}"> ${hero.name}</td>
+            <td><img src="${hero.images.xs}" alt="${hero.name}"></td>
+            <td> ${hero.name}</td>
             <td>${hero.biography.fullName || 'N/A'}</td>
             <td>
                 Intelligence: ${hero.powerstats.intelligence || 'N/A'}, 
@@ -58,7 +59,7 @@ const extractNumber = (str) => {
     return isNaN(num) ? null : num;
 };
 
-// Function to sort the table by a given key (handles both strings and numerical values)
+// Function to sort the table by a given key (handles both strings and numerical values, with missing values sorted last)
 const sortTable = (key) => {
     // Toggle ascending/descending
     if (currentSortColumn === key) {
@@ -72,11 +73,11 @@ const sortTable = (key) => {
         let aValue, bValue;
 
         if (key === 'height') {
-            aValue = extractNumber(a.appearance.height[1]) || 0;
-            bValue = extractNumber(b.appearance.height[1]) || 0;
+            aValue = extractNumber(a.appearance.height[1]);
+            bValue = extractNumber(b.appearance.height[1]);
         } else if (key === 'weight') {
-            aValue = extractNumber(a.appearance.weight[1]) || 0;
-            bValue = extractNumber(b.appearance.weight[1]) || 0;
+            aValue = extractNumber(a.appearance.weight[1]);
+            bValue = extractNumber(b.appearance.weight[1]);
         } else if (key === 'name') {
             aValue = a.name || '';
             bValue = b.name || '';
@@ -99,9 +100,14 @@ const sortTable = (key) => {
             return 0;
         }
 
+        // Handle missing values
+        if (aValue == null || aValue === '') return ascending ? 1 : -1; // Always sort nulls/empty strings last
+        if (bValue == null || bValue === '') return ascending ? -1 : 1;
+
         if (typeof aValue === 'string' && typeof bValue === 'string') {
             return ascending ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
         }
+
         return ascending ? aValue - bValue : bValue - aValue;
     });
 
