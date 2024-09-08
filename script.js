@@ -31,7 +31,7 @@ const renderTable = (data) => {
     slicedData.forEach(hero => {
         let row = `<tr>
             <td><img src="${hero.images.xs}" alt="${hero.name}/"></td>
-            <td> ${hero.name}</td>
+            <td>${hero.name}</td>
             <td>${hero.biography.fullName || 'N/A'}</td>
             <td>${hero.powerstats.intelligence || 'N/A'}</td>
             <td>${hero.powerstats.strength || 'N/A'}</td>
@@ -48,6 +48,7 @@ const renderTable = (data) => {
         </tr>`;
         tbody.innerHTML += row;
     });
+    updatePagination();
 };
 
 // Function to sort the table by a given key
@@ -65,6 +66,84 @@ const sortTable = (key) => {
     });
 
     renderTable(currentData);
+};
+
+const sortPowerstats = (key) => {
+    ascending = !ascending;
+    currentData.sort((a, b) => {
+        const aValue = a.powerstats[key] || 0;
+        const bValue = b.powerstats[key] || 0;
+        return ascending ? aValue - bValue : bValue - aValue;
+    });
+    renderTable(currentData);
+};
+
+const sortByHW = (key) => {
+    ascending = !ascending;
+    currentData.sort((a, b) => {
+        const aHeight = parseInt(a.appearance[key][1].split(' ')[0]) || 0;
+        const bHeight = parseInt(b.appearance[key][1].split(' ')[0]) || 0;
+        return ascending ? aHeight - bHeight : bHeight - aHeight;
+    });
+    renderTable(currentData);
+};
+
+// Filter functionality
+
+// Pagination
+const updatePagination = () => {
+    const totalPages = calculateTotalPages();
+    const paginationContainer = document.getElementById('pagination');
+    paginationContainer.innerHTML = '';
+    // Page info
+    const pageInfo = document.createElement('span');
+    pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+    paginationContainer.appendChild(pageInfo);
+
+    // Previous button
+    const prevButton = document.createElement('button');
+    prevButton.textContent = 'Previous';
+    prevButton.onclick = () => changePage(currentPage - 1);
+    prevButton.disabled = currentPage === 1;
+    paginationContainer.appendChild(prevButton);
+
+    // Page numbers
+    let startPage = Math.max(1, currentPage - 2);
+    let endPage = Math.min(totalPages, startPage + 4);
+    if (endPage - startPage < 4) {
+        startPage = Math.max(1, endPage - 4);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.onclick = () => changePage(i);
+        pageButton.classList.toggle('active', i === currentPage);
+        paginationContainer.appendChild(pageButton);
+    }
+
+    // Next button
+    const nextButton = document.createElement('button');
+    nextButton.textContent = 'Next';
+    nextButton.onclick = () => changePage(currentPage + 1);
+    nextButton.disabled = currentPage === totalPages;
+    paginationContainer.appendChild(nextButton);
+};
+
+const changePage = (newPage) => {
+    const totalPages = calculateTotalPages();
+    if (newPage >= 1 && newPage <= totalPages) {
+        currentPage = newPage;
+        renderTable(currentData);
+        updatePagination();
+    }
+};
+
+const calculateTotalPages = () => {
+    if (rowsPerPage === 'all') {
+        return 1;
+    }
+    return Math.ceil(currentData.length / rowsPerPage);
 };
 
 // Search functionality

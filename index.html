@@ -51,34 +51,35 @@
                 <th>Icon</th>
                 <th onclick="sortTable('name')">Name</th>
                 <th>Full Name</th>
-                <th>Powerstats:
+                <th onclick="sortPowerstats('intelligence')">Powerstats:
                     Intelligence
                 </th>
-                <th>Powerstats:
+                <th  onclick="sortPowerstats('strength')">Powerstats:
                     Strength
                 </th>
-                <th>Powerstats: 
+                <th  onclick="sortPowerstats('speed')">Powerstats: 
                     Speed
                 </th>
-                <th>Powerstats:
+                <th  onclick="sortPowerstats('durability')">Powerstats:
                     Durability
                 </th>
-                <th>Powerstats:
+                <th  onclick="sortPowerstats('power')">Powerstats:
                     Power
                 </th>
-                <th>Powerstats:
+                <th  onclick="sortPowerstats('combat')">Powerstats:
                     Combat
                 </th>
                 <th onclick="sortTable('race')">Race</th>
                 <th onclick="sortTable('gender')">Gender</th>
-                <th>Height</th>
-                <th>Weight</th>
+                <th onclick="sortByHW('height')">Height</th>
+                <th onclick="sortByHW('weight')">Weight</th>
                 <th>Place of Birth</th>
                 <th onclick="sortTable('alignment')">Alignment</th>
             </tr>
         </thead>
         <tbody id="tableBody"></tbody>
     </table>
+    <div id="pagination"></div>
 
     <script src="script.js"></script>
 </body>
