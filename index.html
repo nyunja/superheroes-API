@@ -4,32 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Superhero Data</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-
-        th {
-            cursor: pointer;
-            background-color: #f4f4f4;
-        }
-
-        select, input[type="text"] {
-            margin-bottom: 10px;
-            padding: 8px;
-        }
-
-        img {
-            width: 50px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Superhero Data</h1>
@@ -50,13 +25,13 @@
             <tr>
                 <th>Icon</th>
                 <th onclick="sortTable('name')">Name</th>
-                <th>Full Name</th>
+                <th onclick="sortTable('fullName')">Full Name</th>
                 <th>Powerstats</th>
                 <th onclick="sortTable('race')">Race</th>
                 <th onclick="sortTable('gender')">Gender</th>
-                <th>Height</th>
-                <th>Weight</th>
-                <th>Place of Birth</th>
+                <th onclick="sortTable('height')">Height</th>
+                <th onclick="sortTable('weight')">Weight</th>
+                <th onclick="sortTable('placeOfBirth')">Place of Birth</th>
                 <th onclick="sortTable('alignment')">Alignment</th>
             </tr>
         </thead>
