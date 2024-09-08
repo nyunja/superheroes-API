@@ -13,7 +13,7 @@ const loadData = (data) => {
 
 // Fetch data from the API
 const fetchData = () => {
-    fetch('data.json')
+    fetch('https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json')
         .then(response => response.json())
         .then(loadData);
 };
