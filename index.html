@@ -26,7 +26,24 @@
                 <th>Icon</th>
                 <th onclick="sortTable('name')">Name</th>
                 <th onclick="sortTable('fullName')">Full Name</th>
-                <th>Powerstats</th>
+                <th onclick="sortTable('intelligence')">Powerstats:
+                    Intelligence
+                </th>
+                <th  onclick="sortTable('strength')">Powerstats:
+                    Strength
+                </th>
+                <th  onclick="sortTable('speed')">Powerstats: 
+                    Speed
+                </th>
+                <th  onclick="sortTable('durability')">Powerstats:
+                    Durability
+                </th>
+                <th  onclick="sortTable('power')">Powerstats:
+                    Power
+                </th>
+                <th  onclick="sortTable('combat')">Powerstats:
+                    Combat
+                </th>
                 <th onclick="sortTable('race')">Race</th>
                 <th onclick="sortTable('gender')">Gender</th>
                 <th onclick="sortTable('height')">Height</th>
@@ -37,6 +54,7 @@
         </thead>
         <tbody id="tableBody"></tbody>
     </table>
+    <div id="pagination"></div>
 
     <script src="script.js"></script>
 </body>
