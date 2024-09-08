@@ -77,6 +77,9 @@ const sortTable = (key) => {
         } else if (key === 'weight') {
             aValue = extractNumber(a.appearance.weight[1]);
             bValue = extractNumber(b.appearance.weight[1]);
+        } else if (key === 'intelligence' || key ==='strength' || key ==='speed' || key === 'durability' || key === 'power' || key === 'combat') {
+            aValue = a.powerstats[key] || 0;
+            bValue = b.powerstats[key] || 0;
         } else if (key === 'name') {
             aValue = a.name || '';
             bValue = b.name || '';
@@ -110,26 +113,6 @@ const sortTable = (key) => {
         return ascending ? aValue - bValue : bValue - aValue;
     });
 
-    renderTable(currentData);
-};
-
-const sortPowerstats = (key) => {
-    ascending = !ascending;
-    currentData.sort((a, b) => {
-        const aValue = a.powerstats[key] || 0;
-        const bValue = b.powerstats[key] || 0;
-        return ascending ? aValue - bValue : bValue - aValue;
-    });
-    renderTable(currentData);
-};
-
-const sortByHW = (key) => {
-    ascending = !ascending;
-    currentData.sort((a, b) => {
-        const aHeight = parseInt(a.appearance[key][1].split(' ')[0]) || 0;
-        const bHeight = parseInt(b.appearance[key][1].split(' ')[0]) || 0;
-        return ascending ? aHeight - bHeight : bHeight - aHeight;
-    });
     renderTable(currentData);
 };
 
