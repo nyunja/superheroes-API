@@ -24,7 +24,7 @@ const fetchData = () => {
 // Function to render the table
 const renderTable = (data) => {
     const tbody = document.getElementById('tableBody');
-    tbody.innerHTML = '';  // Clear current table data
+    tbody.innerHTML = '';
     let slicedData = data.slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage);
 
     if (rowsPerPage === 'all') {
@@ -32,8 +32,8 @@ const renderTable = (data) => {
     }
 
     slicedData.forEach(hero => {
-        let row = `<tr>
-            <td><img src="${hero.images.xs}" alt="${hero.name}"/></td>
+        let row = `<tr onclick="showDetail(${hero.id})">
+            <td><img src="${hero.images.xs}" alt="${hero.name}"></td>
             <td>${hero.name}</td>
             <td>${hero.biography.fullName || 'N/A'}</td>
             <td>${hero.powerstats.intelligence || 'N/A'}</td>
@@ -53,6 +53,42 @@ const renderTable = (data) => {
     });
 
     updatePaginationControls(data.length);
+};
+
+// Close the modal when clicking outside of it
+window.onclick = (event) => {
+    if (event.target === document.getElementById('overlay')) {
+        closeDetailView();
+    }
+};
+
+const showDetail = (id) => {
+    const hero = heroes.find(h => h.id === id);
+    if (!hero) return;
+
+    document.getElementById('detailName').textContent = hero.name;
+    document.getElementById('detailImage').src = hero.images.md;
+    document.getElementById('detailFullName').textContent = hero.biography.fullName || 'N/A';
+    document.getElementById('detailRace').textContent = hero.appearance.race || 'N/A';
+    document.getElementById('detailGender').textContent = hero.appearance.gender || 'N/A';
+    document.getElementById('detailHeight').textContent = hero.appearance.height[1] || 'N/A';
+    document.getElementById('detailWeight').textContent = hero.appearance.weight[1] || 'N/A';
+    document.getElementById('detailPlaceOfBirth').textContent = hero.biography.placeOfBirth || 'N/A';
+    document.getElementById('detailAlignment').textContent = hero.biography.alignment || 'N/A';
+    document.getElementById('detailIntelligence').textContent = hero.powerstats.intelligence || 'N/A';
+    document.getElementById('detailStrength').textContent = hero.powerstats.strength || 'N/A';
+    document.getElementById('detailSpeed').textContent = hero.powerstats.speed || 'N/A';
+    document.getElementById('detailDurability').textContent = hero.powerstats.durability || 'N/A';
+    document.getElementById('detailPower').textContent = hero.powerstats.power || 'N/A';
+    document.getElementById('detailCombat').textContent = hero.powerstats.combat || 'N/A';
+
+    document.getElementById('detailModal').style.display = 'block';
+    document.getElementById('overlay').style.display = 'block';
+};
+
+const closeDetailView = () => {
+    document.getElementById('detailModal').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
 };
 
 // Function to sort the table by a given key
