@@ -5,80 +5,159 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Superhero Data</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
 
         th, td {
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ddd;
             text-align: left;
         }
 
         th {
             cursor: pointer;
-            background-color: #f4f4f4;
+            background-color: #007bff;
+            color: #fff;
+            position: relative;
+        }
+
+        th:hover {
+            background-color: #0056b3;
+        }
+
+        th::after {
+            content: "⬍";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+        }
+
+        th.sort-asc::after {
+            content: "⬆️";
+        }
+
+        th.sort-desc::after {
+            content: "⬇️";
+        }
+
+        td img {
+            width: 50px;
+            height: auto;
+            border-radius: 50%;
         }
 
         select, input[type="text"] {
-            margin-bottom: 10px;
-            padding: 8px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
         }
 
-        img {
-            width: 50px;
+        select {
+            width: auto;
+        }
+
+        input[type="text"] {
+            width: 300px;
+        }
+
+        .pagination-controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .pagination-controls button {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 5px;
+            font-size: 16px;
+        }
+
+        .pagination-controls button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .pagination-controls button:hover:not(:disabled) {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <h1>Superhero Data</h1>
+    <div class="container">
+        <h1>Superhero Data</h1>
 
-    <label for="rows">Rows per page: </label>
-    <select id="rows" onchange="updateRows()">
-        <option value="10">10</option>
-        <option value="20" selected>20</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-        <option value="all">All</option>
-    </select>
+        <label for="rows">Rows per page: </label>
+        <select id="rows" onchange="updateRows()">
+            <option value="10">10</option>
+            <option value="20" selected>20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="all">All</option>
+        </select>
 
-    <input type="text" id="search" placeholder="Search by name..." onkeyup="searchTable()">
+        <input type="text" id="search" placeholder="Search by name..." onkeyup="searchTable()">
 
-    <table id="heroTable">
-        <thead>
-            <tr>
-                <th>Icon</th>
-                <th onclick="sortTable('name')">Name</th>
-                <th>Full Name</th>
-                <th>Powerstats:
-                    Intelligence
-                </th>
-                <th>Powerstats:
-                    Strength
-                </th>
-                <th>Powerstats: 
-                    Speed
-                </th>
-                <th>Powerstats:
-                    Durability
-                </th>
-                <th>Powerstats:
-                    Power
-                </th>
-                <th>Powerstats:
-                    Combat
-                </th>
-                <th onclick="sortTable('race')">Race</th>
-                <th onclick="sortTable('gender')">Gender</th>
-                <th>Height</th>
-                <th>Weight</th>
-                <th>Place of Birth</th>
-                <th onclick="sortTable('alignment')">Alignment</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-    </table>
+        <table id="heroTable">
+            <thead>
+                <tr>
+                    <th>Icon</th>
+                    <th onclick="sortTable('name')">Name</th>
+                    <th onclick="sortTable('biography.fullName')">Full Name</th>
+                    <th onclick="sortTable('powerstats.intelligence')">Powerstats: Intelligence</th>
+                    <th onclick="sortTable('powerstats.strength')">Powerstats: Strength</th>
+                    <th onclick="sortTable('powerstats.speed')">Powerstats: Speed</th>
+                    <th onclick="sortTable('powerstats.durability')">Powerstats: Durability</th>
+                    <th onclick="sortTable('powerstats.power')">Powerstats: Power</th>
+                    <th onclick="sortTable('powerstats.combat')">Powerstats: Combat</th>
+                    <th onclick="sortTable('appearance.race')">Race</th>
+                    <th onclick="sortTable('appearance.gender')">Gender</th>
+                    <th onclick="sortTable('appearance.height')">Height</th>
+                    <th onclick="sortTable('appearance.weight')">Weight</th>
+                    <th onclick="sortTable('biography.placeOfBirth')">Place of Birth</th>
+                    <th onclick="sortTable('biography.alignment')">Alignment</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+
+        <div class="pagination-controls">
+            <button id="prevPage" onclick="changePage('prev')">Previous</button>
+            <button id="nextPage" onclick="changePage('next')">Next</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
