@@ -1,0 +1,202 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    position: relative;
+}
+
+th:hover {
+    background-color: #0056b3;
+}
+
+th::after {
+    content: "⬍";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+}
+
+th.sort-asc::after {
+    content: "⬆️";
+}
+
+th.sort-desc::after {
+    content: "⬇️";
+}
+
+td img {
+    width: 50px;
+    height: auto;
+    border-radius: 50%;
+}
+
+select, input[type="text"] {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+select {
+    width: auto;
+}
+
+input[type="text"] {
+    width: 300px;
+}
+
+.pagination-controls {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination-controls button {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 5px;
+    font-size: 16px;
+}
+
+.pagination-controls button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+#detailModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 800px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 8px;
+    overflow: hidden;  /* Hide overflow */
+    text-align: center;
+}
+
+#detailModal .content {
+    overflow-y: auto;  /* Enable vertical scrolling if needed */
+    padding-right: 15px;  /* Space for scrollbar */
+    max-height: calc(80vh - 40px);  /* Limit the height of the content */
+    box-sizing: border-box;
+}
+
+#detailModal img {
+    height: auto;
+    max-width: 100%;
+}
+
+#detailModal .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+#overlay {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+#detailModal ul {
+    padding: 0px;  /* Remove padding */
+    margin: 0;  /* Remove margin */
+    text-align: center;  /* Align text to the left */
+    list-style-type: none;  /* Remove bullet points */
+    display: inline-block;
+}
+
+#detailModal ul li {
+    display: block;
+    margin-bottom: 10px;  /* Add space between list items */
+}
+
+#detailModal .content::-webkit-scrollbar {
+    width: 8px;  /* Adjust the width of the scrollbar */
+}
+
+#detailModal .content::-webkit-scrollbar-track {
+    background: #f1f1f1;  /* Background color of the scrollbar track */
+    border-radius: 10px;  /* Rounded corners for the scrollbar track */
+}
+
+#detailModal .content::-webkit-scrollbar-thumb {
+    background: #888;  /* Color of the scrollbar thumb */
+    border-radius: 10px;  /* Rounded corners for the scrollbar thumb */
+}
+
+#detailModal .content::-webkit-scrollbar-thumb:hover {
+    background: #555;  /* Color of the scrollbar thumb when hovered */
+}
+
+/* Custom scrollbar styles for Firefox */
+#detailModal .content {
+    scrollbar-width: thin;  /* Use a thin scrollbar */
+    scrollbar-color: #888 #f1f1f1;  /* Color of the scrollbar thumb and track */
+}
