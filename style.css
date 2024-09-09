@@ -1,3 +1,8 @@
+@font-face {
+    font-family: Playfair;
+    src: url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -9,6 +14,7 @@ h1 {
     text-align: center;
     margin: 20px 0;
     color: #333;
+    font-family: Playfair;
 }
 
 .container {
@@ -26,7 +32,8 @@ table {
     margin-top: 20px;
 }
 
-th, td {
+th,
+td {
     padding: 12px;
     border: 1px solid #ddd;
     text-align: left;
@@ -64,9 +71,11 @@ td img {
     width: 50px;
     height: auto;
     border-radius: 50%;
+    font-family: Playfair;
 }
 
-select, input[type="text"] {
+select,
+input[type="text"] {
     margin-bottom: 20px;
     padding: 10px;
     border: 1px solid #ddd;
@@ -120,14 +129,18 @@ input[type="text"] {
     z-index: 1000;
     padding: 20px;
     border-radius: 8px;
-    overflow: hidden;  /* Hide overflow */
+    overflow: hidden;
+    /* Hide overflow */
     text-align: center;
 }
 
 #detailModal .content {
-    overflow-y: auto;  /* Enable vertical scrolling if needed */
-    padding-right: 15px;  /* Space for scrollbar */
-    max-height: calc(80vh - 40px);  /* Limit the height of the content */
+    overflow-y: auto;
+    /* Enable vertical scrolling if needed */
+    padding-right: 15px;
+    /* Space for scrollbar */
+    max-height: calc(80vh - 40px);
+    /* Limit the height of the content */
     box-sizing: border-box;
 }
 
