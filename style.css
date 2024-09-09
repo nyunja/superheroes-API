@@ -168,6 +168,15 @@ select, input[type="text"] {
     scrollbar-width: thin;
     scrollbar-color: #007bff #f1f1f1;
 }
+.container label{
+    padding-left: 100px;
+    padding-right: 5px;
+}
+
+.container select{
+    margin-right: 10px;
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {
