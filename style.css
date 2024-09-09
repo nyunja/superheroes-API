@@ -165,38 +165,38 @@ input[type="text"] {
 }
 
 #detailModal ul {
-    padding: 0px;  /* Remove padding */
-    margin: 0;  /* Remove margin */
-    text-align: center;  /* Align text to the left */
-    list-style-type: none;  /* Remove bullet points */
+    padding: 0px;
+    margin: 0;
+    text-align: center;
+    list-style-type: none;
     display: inline-block;
 }
 
 #detailModal ul li {
     display: block;
-    margin-bottom: 10px;  /* Add space between list items */
+    margin-bottom: 10px;
 }
 
 #detailModal .content::-webkit-scrollbar {
-    width: 8px;  /* Adjust the width of the scrollbar */
+    width: 8px;
 }
 
 #detailModal .content::-webkit-scrollbar-track {
-    background: #f1f1f1;  /* Background color of the scrollbar track */
-    border-radius: 10px;  /* Rounded corners for the scrollbar track */
+    background: #f1f1f1;
+    border-radius: 10px;
 }
 
 #detailModal .content::-webkit-scrollbar-thumb {
-    background: #888;  /* Color of the scrollbar thumb */
-    border-radius: 10px;  /* Rounded corners for the scrollbar thumb */
+    background: #888;
+    border-radius: 10px;
 }
 
 #detailModal .content::-webkit-scrollbar-thumb:hover {
-    background: #555;  /* Color of the scrollbar thumb when hovered */
+    background: #555;
 }
 
 /* Custom scrollbar styles for Firefox */
 #detailModal .content {
-    scrollbar-width: thin;  /* Use a thin scrollbar */
-    scrollbar-color: #888 #f1f1f1;  /* Color of the scrollbar thumb and track */
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
 }
