@@ -1,161 +1,142 @@
+/* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    box-sizing: border-box;
 }
 
+/* Header Styles */
 h1 {
     text-align: center;
-    margin: 20px 0;
     color: #333;
+    margin: 20px 0;
 }
 
-.container {
-    width: 90%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
+/* Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 th, td {
-    padding: 12px;
+    padding: 12px 15px;
     border: 1px solid #ddd;
     text-align: left;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 th {
     cursor: pointer;
     background-color: #007bff;
     color: #fff;
-    position: relative;
+    font-weight: bold;
 }
 
 th:hover {
     background-color: #0056b3;
 }
 
-th::after {
-    content: "⬍";
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 14px;
+tr:nth-child(even) {
+    background-color: #f9f9f9;
 }
 
-th.sort-asc::after {
-    content: "⬆️";
+tr:hover {
+    background-color: #f1f1f1;
 }
 
-th.sort-desc::after {
-    content: "⬇️";
-}
-
-td img {
-    width: 50px;
-    height: auto;
+img {
+    width: 60px;
     border-radius: 50%;
+    border: 2px solid #007bff;
 }
 
+/* Form Elements */
 select, input[type="text"] {
     margin-bottom: 20px;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
 }
 
-select {
-    width: auto;
-}
-
-input[type="text"] {
-    width: 300px;
-}
-
-.pagination-controls {
-    margin-top: 20px;
-    text-align: center;
-}
-
-.pagination-controls button {
-    padding: 10px 20px;
-    border: 1px solid #ddd;
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 0 5px;
-    font-size: 16px;
-}
-
-.pagination-controls button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-.pagination-controls button:hover:not(:disabled) {
-    background-color: #0056b3;
-}
-
+/* Modal Styles */
 #detailModal {
     display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 800px;
+    width: 90%;
+    width: 600px;  /* Increased max-width for larger image */
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     padding: 20px;
     border-radius: 8px;
     overflow: hidden;  /* Hide overflow */
-    text-align: center;
 }
 
 #detailModal .content {
-    overflow-y: auto;  /* Enable vertical scrolling if needed */
+    max-height: 80vh;  /* Increased max-height for better image view */
+    overflow-y: auto;
     padding-right: 15px;  /* Space for scrollbar */
-    max-height: calc(80vh - 40px);  /* Limit the height of the content */
     box-sizing: border-box;
+    text-align: center;  /* Center text content */
 }
 
 #detailModal img {
-    height: auto;
-    max-width: 100%;
+    width: 35%;  /* Increased size of the image */
+    height:auto;
+    display: block;
+    margin: 0 auto 20px;  /* Center image and add margin */
+    border-radius: 8px;
+    border: 2px solid #007bff;
+}
+
+#detailModal ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    text-align: center;  /* Center list items */
+}
+
+#detailModal ul li {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 16px;
 }
 
 #detailModal .close {
     position: absolute;
-    right: 10px;
     top: 10px;
-    background: #333;
+    right: 10px;
+    background: #007bff;
     color: #fff;
     border: none;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    z-index: 1001;
+    font-size: 20px;
+    transition: background 0.3s;
 }
 
+#detailModal .close:hover {
+    background: #0056b3;
+}
+
+/* Overlay Styles */
 #overlay {
-    position: fixed;
     display: none;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -164,19 +145,7 @@ input[type="text"] {
     z-index: 999;
 }
 
-#detailModal ul {
-    padding: 0px;
-    margin: 0;
-    text-align: center;
-    list-style-type: none;
-    display: inline-block;
-}
-
-#detailModal ul li {
-    display: block;
-    margin-bottom: 10px;
-}
-
+/* Custom Scrollbar Styles */
 #detailModal .content::-webkit-scrollbar {
     width: 8px;
 }
@@ -187,16 +156,74 @@ input[type="text"] {
 }
 
 #detailModal .content::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #007bff;
     border-radius: 10px;
 }
 
 #detailModal .content::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #0056b3;
 }
 
-/* Custom scrollbar styles for Firefox */
 #detailModal .content {
     scrollbar-width: thin;
-    scrollbar-color: #888 #f1f1f1;
+    scrollbar-color: #007bff #f1f1f1;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    /* Adjust the layout for tablets and mobile devices */
+    th, td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    select, input[type="text"] {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    #detailModal {
+        width: 95%;
+        max-width: none;
+    }
+
+    #detailModal img {
+        max-width: 90%;
+    }
+
+    #detailModal .close {
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+    }
+
+    #detailModal ul li {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Adjust the layout for very small screens */
+    th, td {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    select, input[type="text"] {
+        font-size: 12px;
+    }
+
+    #detailModal img {
+        max-width: 100%;
+    }
+
+    #detailModal .close {
+        width: 25px;
+        height: 25px;
+        font-size: 18px;
+    }
+
+    #detailModal ul li {
+        font-size: 14px;
+    }
 }
