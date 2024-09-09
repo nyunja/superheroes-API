@@ -72,28 +72,28 @@ select, input[type="text"] {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
-    width: 600px;  /* Increased max-width for larger image */
+    width: 600px;
     background-color: #fff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     z-index: 1000;
     padding: 20px;
     border-radius: 8px;
-    overflow: hidden;  /* Hide overflow */
+    overflow: hidden;
 }
 
 #detailModal .content {
-    max-height: 80vh;  /* Increased max-height for better image view */
+    max-height: 80vh;
     overflow-y: auto;
-    padding-right: 15px;  /* Space for scrollbar */
+    padding-right: 15px;
     box-sizing: border-box;
-    text-align: center;  /* Center text content */
+    text-align: center;
 }
 
 #detailModal img {
-    width: 35%;  /* Increased size of the image */
+    width: 35%;
     height:auto;
     display: block;
-    margin: 0 auto 20px;  /* Center image and add margin */
+    margin: 0 auto 20px;
     border-radius: 8px;
     border: 2px solid #007bff;
 }
@@ -102,7 +102,7 @@ select, input[type="text"] {
     list-style: none;
     padding: 0;
     margin: 20px 0;
-    text-align: center;  /* Center list items */
+    text-align: center;
 }
 
 #detailModal ul li {
@@ -171,7 +171,6 @@ select, input[type="text"] {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    /* Adjust the layout for tablets and mobile devices */
     th, td {
         padding: 8px;
         font-size: 14px;
@@ -203,7 +202,6 @@ select, input[type="text"] {
 }
 
 @media (max-width: 480px) {
-    /* Adjust the layout for very small screens */
     th, td {
         padding: 6px;
         font-size: 12px;
